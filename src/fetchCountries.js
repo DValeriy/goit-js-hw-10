@@ -1,5 +1,18 @@
 import config from './config.json';
 
+export const fetchCountries = name => {
+  return fetch(`${config.baseUrlStart}${name}${config.baseUrlEnd}`)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      if (data.status === 404) {
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+      } else return data;
+    });
+};
+// fOR FUTURE EXPERIMENT
+
 // export const fetchCountries = (name) => {
 //     return fetch(`${config.baseUrlStart}${name}${config.baseUrlEnd}`)
 //     .then((response) => {
@@ -14,36 +27,7 @@ import config from './config.json';
 //   .catch(error =>  Notiflix.Notify.failure(`Oops, there is no country with that name`));
 // };
 
-export const fetchCountries = name => {
-  return fetch(`${config.baseUrlStart}${name}${config.baseUrlEnd}`)
-    .then(response => {
-      console.log(response.ok);
-
-      return response.json();
-    })
-    .then(data => {
-      if (data.status === 404) {
-        Notiflix.Notify.failure('Oops, there is no country with that name');
-      } else return data;
-    });
-};
-
-// fetch(url)
-//     .then(resp => (resp.ok)
-//         ? resp.json()
-//         : Promise.reject('is not ok: ' + resp.status)
-//     )
-//     .catch((err) => {
-//         console.warn(err)
-//     })
-
-// fetch(url)
-//     .then(resp => {
-//         if (!resp.ok) {
-//             throw Error(`is not ok: ` + resp.status);
-//         }
-//     return resp.json();
-//     })
-//     .catch((err) => {
-//         console.warn(err)
-//     })
+// Notiflix.Notify.success('Sol lucet omnibus');
+// Notiflix.Notify.failure('Qui timide rogat docet negare');
+// Notiflix.Notify.warning('Memento te hominem esse');
+// Notiflix.Notify.info('Cogito ergo sum');
