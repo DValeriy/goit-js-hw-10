@@ -48,7 +48,7 @@ const handlerForInput = e => {
   }
   if (valueOfInput) {
     fetchCountries(valueOfInput).then(data => {
-      // console.log(data)
+      if (!data) return;
       if (data.length > 10) {
         nodes.countryInfoNode.innerHTML = '';
         nodes.countryListNode.innerHTML = '';
@@ -63,7 +63,6 @@ const handlerForInput = e => {
         showCountryInfo(data);
       }
     });
-    // .catch(error => Notiflix.Notify.failure(`Oops, there is no country with that name`));
   }
 };
 nodes.inputSearch.addEventListener('input', debouce(handlerForInput, DEBOUNCE_DELAY));
