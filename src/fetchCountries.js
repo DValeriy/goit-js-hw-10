@@ -24,7 +24,6 @@ export const fetchCountries = (name) => {
         })
 };
 
-
 // fetch(url)
 //     .then(resp => (resp.ok)
 //         ? resp.json()
