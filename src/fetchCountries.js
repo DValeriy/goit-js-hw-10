@@ -1,4 +1,4 @@
-import config from "./config.json"
+import config from './config.json';
 
 // export const fetchCountries = (name) => {
 //     return fetch(`${config.baseUrlStart}${name}${config.baseUrlEnd}`)
@@ -14,14 +14,18 @@ import config from "./config.json"
 //   .catch(error =>  Notiflix.Notify.failure(`Oops, there is no country with that name`));
 // };
 
-export const fetchCountries = (name) => {
-    return fetch(`${config.baseUrlStart}${name}${config.baseUrlEnd}`)
-    .then((response) => {
-      if (!response.ok) {
-      Notiflix.Notify.failure('Oops, there is no country with that name');
-            }
-            return response.json();
-        })
+export const fetchCountries = name => {
+  return fetch(`${config.baseUrlStart}${name}${config.baseUrlEnd}`)
+    .then(response => {
+      console.log(response.ok);
+
+      return response.json();
+    })
+    .then(data => {
+      if (data.status === 404) {
+        Notiflix.Notify.failure('Oops, there is no country with that name');
+      } else return data;
+    });
 };
 
 // fetch(url)
@@ -32,7 +36,6 @@ export const fetchCountries = (name) => {
 //     .catch((err) => {
 //         console.warn(err)
 //     })
-
 
 // fetch(url)
 //     .then(resp => {
