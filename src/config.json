@@ -1,0 +1,4 @@
+{
+  "baseUrlStart": "https://restcountries.com/v2/name/",
+  "baseUrlEnd": "?fields=name,capital,population,flag,languages"
+}
